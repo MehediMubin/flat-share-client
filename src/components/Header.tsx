@@ -65,7 +65,9 @@ const Header = () => {
                   </li>
                </ul>
             </div>
-            <a className="btn btn-ghost text-xl">daisyUI</a>
+            <Link className="btn btn-ghost text-xl" href="/">
+               FlatHub
+            </Link>
          </div>
          <div className="navbar-end hidden lg:flex">
             <div className="flex items-stretch">

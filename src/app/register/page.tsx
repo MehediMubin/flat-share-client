@@ -1,6 +1,7 @@
 "use client";
 import Header from "@/components/Header";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -20,6 +21,7 @@ const Page = () => {
       formState: { errors },
    } = useForm<FormData>();
    const password = watch("password", "");
+   const router = useRouter();
 
    const onSubmit: SubmitHandler<FormData> = async (data, e) => {
       try {
@@ -35,6 +37,8 @@ const Page = () => {
 
          if (response.ok) {
             toast.success("user has been created successfully");
+            // after the successfull registration, we can redirect the user to the login page
+            router.push("/login");
             if (e) e.target.reset();
          } else {
             if (Object.keys(responseData?.errorDetails).length == 0) {

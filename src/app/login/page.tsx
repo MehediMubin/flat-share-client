@@ -3,12 +3,17 @@ import Header from "@/components/Header";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+interface FormData {
+   usernameOrEmail: string;
+   password: string;
+}
 
 const Page = () => {
    const router = useRouter();
    const { from } = useParams();
-   const { register, watch, handleSubmit } = useForm();
+   const { register, watch, handleSubmit } = useForm<FormData>();
    const [inputType, setInputType] = useState("username");
    const watchUsernameOrEmail = watch("usernameOrEmail");
 
@@ -16,7 +21,7 @@ const Page = () => {
       setInputType(watchUsernameOrEmail?.includes("@") ? "email" : "username");
    }, [watchUsernameOrEmail]);
 
-   const onSubmit = async (data) => {
+   const onSubmit: SubmitHandler<FormData> = async (data) => {
       const newData = {
          [inputType]: data.usernameOrEmail,
          password: data.password,

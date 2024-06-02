@@ -1,16 +1,21 @@
+"use client";
 import Hero from "@/components/Hero";
 import Search from "@/components/Search";
-import React from "react";
+import { AuthContext } from "@/contexts/AuthContext";
+import React, { useState } from "react";
 import Header from "../components/Header";
 
-const page = () => {
+const Page = () => {
+   const [isAuthenticated, setIsAuthenticated] = useState(false);
    return (
-      <div>
-         <Header />
-         <Hero />
-         <Search />
-      </div>
+      <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
+         <main>
+            <Header />
+            <Hero />
+            <Search />
+         </main>
+      </AuthContext.Provider>
    );
 };
 
-export default page;
+export default Page;

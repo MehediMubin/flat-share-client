@@ -1,9 +1,27 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 const Header = () => {
-   const token = localStorage.getItem("token");
+   const [isAuthenticated, setIsAuthenticated] = useState(false);
+   const router = useRouter();
+
+   useEffect(() => {
+      const token = localStorage.getItem("token");
+
+      if (token) {
+         const jwtPayload = JSON.parse(atob(token.split(".")[1]));
+         const isTokenExpired = Date.now() >= jwtPayload.exp * 1000;
+
+         if (isTokenExpired) {
+            localStorage.removeItem("token");
+            router.push("/login");
+         } else {
+            setIsAuthenticated(true);
+         }
+      }
+   }, [router]);
    return (
       <div className="navbar bg-base-100">
          <div className="navbar-start">
@@ -39,7 +57,7 @@ const Header = () => {
                      <Link href="/about">About</Link>
                   </li>
                   <li>
-                     {token ? (
+                     {isAuthenticated ? (
                         <Link href="/my-profile">My Profile</Link>
                      ) : (
                         <Link href="/login">Login</Link>
@@ -59,7 +77,7 @@ const Header = () => {
                      <Link href="/about">About</Link>
                   </li>
                   <li>
-                     {token ? (
+                     {isAuthenticated ? (
                         <Link href="/my-profile">My Profile</Link>
                      ) : (
                         <Link href="/login">Login</Link>

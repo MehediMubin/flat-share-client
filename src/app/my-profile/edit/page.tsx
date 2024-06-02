@@ -14,7 +14,6 @@ const Page = () => {
    const { register, handleSubmit } = useForm<FormData>();
 
    const onSubmit: SubmitHandler<FormData> = async (data, e) => {
-      e?.preventDefault();
       if (data.username === "" && data.email === "") {
          toast.error("Please fill in at least one field");
          return;
@@ -98,7 +97,7 @@ const Page = () => {
                      <div className="text-sm">
                         <Link
                            className="font-medium text-indigo-600 hover:text-indigo-500"
-                           href="/change-password"
+                           href="/my-profile/edit/change-password"
                         >
                            Change Password
                         </Link>

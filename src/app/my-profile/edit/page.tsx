@@ -2,7 +2,7 @@
 import Header from "@/components/Header";
 import Link from "next/link";
 import React from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 interface FormData {
@@ -13,8 +13,8 @@ interface FormData {
 const Page = () => {
    const { register, handleSubmit } = useForm<FormData>();
 
-   const onSubmit = async (data: FormData, e) => {
-      e.preventDefault();
+   const onSubmit: SubmitHandler<FormData> = async (data, e) => {
+      e?.preventDefault();
       if (data.username === "" && data.email === "") {
          toast.error("Please fill in at least one field");
          return;
@@ -43,6 +43,7 @@ const Page = () => {
          }
 
          toast.success(responseData.message);
+         e?.target.reset();
       } catch (error) {
          toast.error("An error occurred. Please try again later.");
       }

@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import Search from "@/components/Search";
 import React from "react";
 import Header from "../components/Header";
 
@@ -7,6 +8,7 @@ const page = () => {
       <div>
          <Header />
          <Hero />
+         <Search />
       </div>
    );
 };

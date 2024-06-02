@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 interface FormData {
    usernameOrEmail: string;
@@ -26,7 +27,6 @@ const Page = () => {
          [inputType]: data.usernameOrEmail,
          password: data.password,
       };
-      console.log(newData);
 
       try {
          const response = await fetch("http://localhost:5000/api/login", {
@@ -38,8 +38,11 @@ const Page = () => {
          });
 
          const responseData = await response.json();
-         const token = responseData.data.token;
-         console.log(token);
+         if (!responseData.success) {
+            toast.error(responseData.message);
+            return;
+         }
+         const token = responseData?.data?.token;
 
          localStorage.setItem("token", token);
          if (Array.isArray(from)) {
@@ -50,10 +53,7 @@ const Page = () => {
             router.push("/");
          }
       } catch (error) {
-         console.error(
-            "There has been a problem with your fetch operation:",
-            error
-         );
+         toast.error("An error occurred. Please try again later.");
       }
    };
 

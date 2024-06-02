@@ -2,7 +2,7 @@ import { IoBedOutline, IoLocationOutline } from "react-icons/io5";
 
 const Search = () => {
    return (
-      <div className="bg-[#777B81] p-5 flex flex-col md:flex-row justify-between items-center rounded">
+      <div className="bg-[#5087db] p-5 flex flex-col md:flex-row justify-between items-center rounded">
          <div className="bg-white rounded p-2 w-full mb-2 md:mb-0 md:mr-2 flex items-center">
             <IoLocationOutline className="mr-2" />
             <input

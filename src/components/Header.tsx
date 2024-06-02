@@ -1,7 +1,9 @@
+"use client";
 import Link from "next/link";
 import React from "react";
 
 const Header = () => {
+   const token = localStorage.getItem("token");
    return (
       <div className="navbar bg-base-100">
          <div className="navbar-start">
@@ -37,7 +39,11 @@ const Header = () => {
                      <Link href="/about">About</Link>
                   </li>
                   <li>
-                     <Link href="/login">Login</Link>
+                     {token ? (
+                        <Link href="/my-profile">My Profile</Link>
+                     ) : (
+                        <Link href="/login">Login</Link>
+                     )}
                   </li>
                </ul>
             </div>
@@ -53,7 +59,11 @@ const Header = () => {
                      <Link href="/about">About</Link>
                   </li>
                   <li>
-                     <Link href="/login">Login</Link>
+                     {token ? (
+                        <Link href="/my-profile">My Profile</Link>
+                     ) : (
+                        <Link href="/login">Login</Link>
+                     )}
                   </li>
                </ul>
             </div>

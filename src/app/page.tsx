@@ -1,4 +1,5 @@
 "use client";
+import FlatList from "@/components/FlatList";
 import Hero from "@/components/Hero";
 import Search from "@/components/Search";
 import { AuthContext } from "@/contexts/AuthContext";
@@ -12,6 +13,7 @@ const Page = () => {
          <main>
             <Hero />
             <Search />
+            <FlatList />
          </main>
       </AuthContext.Provider>
    );

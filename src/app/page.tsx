@@ -10,7 +10,6 @@ const Page = () => {
    return (
       <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
          <main>
-            <Header />
             <Hero />
             <Search />
          </main>

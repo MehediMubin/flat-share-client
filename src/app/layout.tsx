@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
@@ -19,6 +20,7 @@ export default function RootLayout({
       <html lang="en">
          <body className={inter.className}>
             <Toaster position="bottom-right" />
+            <Header />
             {children}
          </body>
       </html>

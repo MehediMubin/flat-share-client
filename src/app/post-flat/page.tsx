@@ -1,9 +1,46 @@
 "use client";
 import withAuth from "@/utils/withAuth";
-import Link from "next/link";
 import React from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
-const page = () => {
+interface FormData {
+   location: string;
+   description: string;
+   rent: number;
+   numberOfBedrooms: number;
+   amenities: string;
+   photoUrl: string;
+}
+
+const Page = () => {
+   const { register, handleSubmit } = useForm();
+
+   const onSubmit = async (data: FormData) => {
+      data.rent = Number(data.rent);
+      data.numberOfBedrooms = Number(data.numberOfBedrooms);
+      try {
+         const token = localStorage.getItem("token");
+
+         const response = await fetch("http://localhost:5000/api/flats", {
+            method: "POST",
+            headers: {
+               "Content-Type": "application/json",
+               Authorization: `${token}`,
+            },
+            body: JSON.stringify(data),
+         });
+
+         if (response.ok) {
+            toast.success("Flat listed successfully");
+         } else {
+            toast.error("Failed to list flat");
+         }
+      } catch (error) {
+         toast.error("Failed to list flat");
+      }
+   };
+
    return (
       <div className="h-screen-16 flex items-center justify-center bg-gray-50 py-1 px-4 sm:px-6 lg:px-8">
          <div className="max-w-md w-full space-y-8 shadow-lg p-6 rounded-lg bg-white">
@@ -12,17 +49,16 @@ const page = () => {
                   List Your Flat
                </h2>
             </div>
-            <form className="mt-8 space-y-6" action="#" method="POST">
+            <form onSubmit={handleSubmit(onSubmit)} className="mt-8 space-y-6">
                <div className="rounded-md shadow-sm space-y-4">
                   <div>
                      <label htmlFor="location" className="sr-only">
                         Location
                      </label>
                      <input
+                        {...register("location", { required: true })}
                         id="location"
-                        name="location"
                         type="text"
-                        required
                         className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                         placeholder="Location"
                      />
@@ -32,9 +68,8 @@ const page = () => {
                         Detailed Description
                      </label>
                      <textarea
+                        {...register("description", { required: true })}
                         id="description"
-                        name="description"
-                        required
                         className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                         placeholder="Detailed Description"
                      />
@@ -44,10 +79,9 @@ const page = () => {
                         Rent Amount
                      </label>
                      <input
+                        {...register("rent", { required: true })}
                         id="rent"
-                        name="rent"
                         type="number"
-                        required
                         className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                         placeholder="Rent Amount"
                      />
@@ -57,10 +91,9 @@ const page = () => {
                         Number of Bedrooms
                      </label>
                      <input
+                        {...register("numberOfBedrooms", { required: true })}
                         id="bedrooms"
-                        name="bedrooms"
                         type="number"
-                        required
                         className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                         placeholder="Number of Bedrooms"
                      />
@@ -70,30 +103,26 @@ const page = () => {
                         Amenities
                      </label>
                      <input
+                        {...register("amenities", { required: true })}
                         id="amenities"
-                        name="amenities"
                         type="text"
-                        required
                         className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                         placeholder="Amenities"
                      />
                   </div>
                   <div>
-                     <label htmlFor="photo-url" className="sr-only">
+                     <label htmlFor="photoUrl" className="sr-only">
                         Photo URL
                      </label>
                      <input
-                        id="photo-url"
-                        name="photo-url"
+                        {...register("photoUrl", { required: true })}
+                        id="photoUrl"
                         type="text"
-                        required
                         className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                         placeholder="Photo URL"
                      />
                   </div>
-                  
                </div>
-
                <div>
                   <button
                      type="submit"
@@ -108,4 +137,4 @@ const page = () => {
    );
 };
 
-export default withAuth(page);
+export default withAuth(Page);

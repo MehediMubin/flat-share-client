@@ -1,16 +1,20 @@
 import { useRouter } from "next/navigation";
-import React, { ComponentType, PropsWithChildren, useEffect } from "react";
+import React, {
+   ComponentType,
+   PropsWithChildren,
+   useLayoutEffect,
+} from "react";
 
 const withAuth = (WrappedComponent: ComponentType<PropsWithChildren<{}>>) => {
    const WithAuthComponent = (props: PropsWithChildren<{}>) => {
       const Router = useRouter();
       const token = localStorage.getItem("token");
 
-      useEffect(() => {
+      useLayoutEffect(() => {
          if (!token) {
             Router.replace("/login");
          }
-      }, []);
+      }, [Router, token]);
 
       return <WrappedComponent {...props} />;
    };

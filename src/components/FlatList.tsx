@@ -1,4 +1,4 @@
-"use client";
+"use strict";
 import React, { useEffect, useState } from "react";
 import FlatCard from "./FlatCard";
 
@@ -11,15 +11,16 @@ export interface Flat {
    photoUrl: string;
 }
 
-const FlatList = () => {
+const FlatList = ({ searchState }: { searchState: any }) => {
    const [flats, setFlats] = useState([]);
 
    useEffect(() => {
-      fetch("http://localhost:5000/api/flats")
+      const params = new URLSearchParams(searchState).toString();
+      fetch(`http://localhost:5000/api/flats?${params}`)
          .then((response) => response.json())
          .then((data) => setFlats(data.data))
          .catch((error) => console.error("Error:", error));
-   }, []);
+   }, [searchState]);
 
    return (
       <div className="p-5">

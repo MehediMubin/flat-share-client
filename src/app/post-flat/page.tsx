@@ -1,7 +1,7 @@
 "use client";
 import withAuth from "@/utils/withAuth";
 import React from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 interface FormData {
@@ -14,9 +14,9 @@ interface FormData {
 }
 
 const Page = () => {
-   const { register, handleSubmit } = useForm();
+   const { register, handleSubmit } = useForm<FormData>();
 
-   const onSubmit = async (data: FormData) => {
+   const onSubmit: SubmitHandler<FormData> = async (data, e) => {
       data.rent = Number(data.rent);
       data.numberOfBedrooms = Number(data.numberOfBedrooms);
       try {
@@ -33,6 +33,7 @@ const Page = () => {
 
          if (response.ok) {
             toast.success("Flat listed successfully");
+            e?.target.reset();
          } else {
             toast.error("Failed to list flat");
          }

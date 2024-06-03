@@ -79,18 +79,19 @@ const page = () => {
                      />
                   </div>
                   <div>
-                     <label htmlFor="photos" className="sr-only">
-                        Upload Photos
+                     <label htmlFor="photo-url" className="sr-only">
+                        Photo URL
                      </label>
                      <input
-                        id="photos"
-                        name="photos"
-                        type="file"
+                        id="photo-url"
+                        name="photo-url"
+                        type="text"
                         required
                         className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                        multiple
+                        placeholder="Photo URL"
                      />
                   </div>
+                  
                </div>
 
                <div>

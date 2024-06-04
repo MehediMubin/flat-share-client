@@ -16,7 +16,6 @@ const MyFlatPosts = () => {
          .then((response) => response.json())
          .then((data) => {
             setFlats(data.data);
-            console.log(data.data);
          })
          .catch((error) => console.error("Error:", error));
    }, []);

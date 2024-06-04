@@ -1,4 +1,5 @@
 import MyFlatPosts from "@/components/MyFlatPosts";
+import MyFlatRequests from "@/components/MyFlatRequests";
 import MyProfile from "@/components/MyProfile";
 
 const ProfilePage = () => {
@@ -6,6 +7,7 @@ const ProfilePage = () => {
       <div>
          <MyProfile />
          <MyFlatPosts />
+         <MyFlatRequests />
       </div>
    );
 };

@@ -33,7 +33,7 @@ const MyFlatRequests = () => {
    }, []);
 
    return (
-      <div>
+      <div className="px-2 md:px-8 lg:px-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-10">
          {requests.length > 0 ? (
             requests.map((request: Request, index) => (
                <MyFlatRequestCard
@@ -43,7 +43,7 @@ const MyFlatRequests = () => {
                />
             ))
          ) : (
-            <p className="text-center text-2xl text-gray-600 mt-4">
+            <p className="text-center text-2xl text-gray-600 mt-4 col-span-full">
                You haven&apos;t Submitted any Requests Yet
             </p>
          )}

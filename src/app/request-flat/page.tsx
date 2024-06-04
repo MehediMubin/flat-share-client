@@ -1,8 +1,24 @@
 "use client";
 import withAuth from "@/utils/withAuth";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const page = () => {
+const Page = () => {
+   const [profileData, setProfileData] = useState({
+      username: "",
+      email: "",
+   });
+
+   useEffect(() => {
+      const token = localStorage.getItem("token");
+      fetch("http://localhost:5000/api/profile", {
+         headers: {
+            Authorization: `${token}`,
+         },
+      })
+         .then((response) => response.json())
+         .then((data) => setProfileData(data.data))
+         .catch((error) => console.error("Error:", error));
+   }, []);
    return (
       <div>
          <div className="h-screen-16 flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -15,7 +31,7 @@ const page = () => {
                <form className="mt-8 space-y-6">
                   <div className="rounded-md shadow-sm space-y-4">
                      <div>
-                        <label htmlFor="usernameOrEmail" className="sr-only">
+                        <label htmlFor="username" className="sr-only">
                            Username
                         </label>
                         <input
@@ -25,6 +41,7 @@ const page = () => {
                            required
                            className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                            placeholder="Username"
+                           value={profileData?.username || ""}
                         />
                      </div>
                      <div>
@@ -38,6 +55,7 @@ const page = () => {
                            required
                            className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                            placeholder="Email"
+                           value={profileData?.email || ""}
                         />
                      </div>
                   </div>
@@ -68,4 +86,4 @@ const page = () => {
    );
 };
 
-export default withAuth(page);
+export default withAuth(Page);

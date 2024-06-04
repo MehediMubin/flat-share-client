@@ -28,8 +28,12 @@ const MyFlatCard: React.FC<MyFlatCardProps> = ({
             <span>{amenities}</span>
             <h3 className="card-title">Rent: ${rent}</h3>
             <div className="card-actions justify-end">
-               <button className="btn btn-primary">Edit</button>
-               <button className="btn btn-secondary ml-2">Delete</button>
+               <button className="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                  Edit
+               </button>
+               <button className="btn bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2">
+                  Delete
+               </button>
             </div>
          </div>
       </div>

@@ -24,10 +24,10 @@ const MyFlatPosts = () => {
    return (
       <div className="px-2 md:px-8 lg:px-16">
          <hr />
-         <h1 className="text-center text-4xl font-bold text-gray-800 my-4">
+         <h1 className="text-center text-4xl font-bold text-gray-800 my-5">
             My Flat Lists
          </h1>
-         <hr />
+
          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 justify-center">
             {flats && flats.length > 0 ? (
                flats.map((flat: Flat) => (

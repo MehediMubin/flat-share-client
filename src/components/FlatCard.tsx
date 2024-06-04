@@ -41,7 +41,7 @@ const FlatCard = (props: Flat) => {
                   href={`/flat/${_id}`}
                   className="btn btn-primary bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded"
                >
-                  Watch
+                  See Details
                </Link>
             </div>
          </div>

@@ -21,6 +21,17 @@ const MyFlatPosts = () => {
          .catch((error) => console.error("Error:", error));
    }, []);
 
+   const handleDelete = async (flatId: string) => {
+      const token = localStorage.getItem("token");
+      await fetch(`http://localhost:5000/api/flats/${flatId}`, {
+         method: "DELETE",
+         headers: {
+            Authorization: `${token}`,
+         },
+      });
+      setFlats(flats.filter((flat: Flat) => flat._id !== flatId));
+   };
+
    return (
       <div className="px-2 md:px-8 lg:px-16">
          <hr />
@@ -39,6 +50,7 @@ const MyFlatPosts = () => {
                      photoUrl={flat.photoUrl}
                      amenities={flat.amenities}
                      rent={flat.rent}
+                     onDelete={handleDelete}
                   />
                ))
             ) : (

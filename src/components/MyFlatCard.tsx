@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 interface MyFlatCardProps {
    flatId: string;
@@ -9,6 +9,7 @@ interface MyFlatCardProps {
    photoUrl: string;
    amenities: string;
    rent: number;
+   onDelete: (flatId: string) => Promise<void>;
 }
 
 const MyFlatCard: React.FC<MyFlatCardProps> = ({
@@ -18,7 +19,18 @@ const MyFlatCard: React.FC<MyFlatCardProps> = ({
    photoUrl,
    amenities,
    rent,
+   onDelete,
 }) => {
+   const [isDeleting, setIsDeleting] = useState(false);
+
+   const deleteFlat = async () => {
+      if (window.confirm("Are you sure you want to delete?")) {
+         setIsDeleting(true);
+         await onDelete(flatId);
+         setIsDeleting(false);
+      }
+   };
+
    return (
       <div className="card w-full sm:w-72 md:w-80 bg-base-100 shadow-xl">
          <figure>
@@ -37,8 +49,12 @@ const MyFlatCard: React.FC<MyFlatCardProps> = ({
                >
                   Edit
                </Link>
-               <button className="btn bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2">
-                  Delete
+               <button
+                  onClick={deleteFlat}
+                  disabled={isDeleting}
+                  className="btn bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2"
+               >
+                  {isDeleting ? "Deleting..." : "Delete"}
                </button>
             </div>
          </div>

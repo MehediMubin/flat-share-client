@@ -10,7 +10,7 @@ const MyFlatRequestCard: React.FC<MyFlatRequestCardProps> = ({
    status,
 }) => {
    return (
-      <div className="h-screen-16 flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="h-screen-16 flex items-center justify-center bg-gray-50 py-3 px-4 sm:px-6 lg:px-8">
          <div className="max-w-md w-full space-y-8 shadow-lg p-6 rounded-lg bg-white">
             <div className="flex justify-between items-center">
                <h1 className="text-3xl font-extrabold text-gray-900">

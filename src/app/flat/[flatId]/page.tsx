@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -48,6 +49,12 @@ const Page = () => {
                      height={500}
                   />
                )}
+               <Link
+                  href={`/share?flatId=${flatId}`}
+                  className="mt-5 inline-block bg-blue-500 text-white px-4 py-2 rounded"
+               >
+                  Share Request
+               </Link>
             </div>
          )}
       </div>

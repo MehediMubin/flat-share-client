@@ -62,7 +62,7 @@ const Page = () => {
                   />
                )}
                <Link
-                  href="/request-flat"
+                  href={`/request-flat?flatId=${flatId}`}
                   className="mt-5 inline-block bg-blue-500 text-white px-4 py-2 rounded"
                >
                   Share Request

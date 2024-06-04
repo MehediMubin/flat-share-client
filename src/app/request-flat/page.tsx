@@ -1,8 +1,12 @@
 "use client";
 import withAuth from "@/utils/withAuth";
-import React, { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import React, { FormEventHandler, useEffect, useState } from "react";
+import { toast } from "sonner";
 
 const Page = () => {
+   const searchParams = useSearchParams();
+   const flatId = searchParams.get("flatId");
    const [profileData, setProfileData] = useState({
       username: "",
       email: "",
@@ -19,6 +23,26 @@ const Page = () => {
          .then((data) => setProfileData(data.data))
          .catch((error) => console.error("Error:", error));
    }, []);
+
+   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      const bodyData = {
+         username: profileData.username,
+         email: profileData.email,
+      };
+      const token = localStorage.getItem("token");
+      fetch(`http://localhost:5000/api/booking-applications?flatId=${flatId}`, {
+         method: "POST",
+         headers: {
+            "Content-Type": "application/json",
+            Authorization: `${token}`,
+         },
+         body: JSON.stringify(bodyData),
+      })
+         .then((response) => response.json())
+         .then((data) => toast.success(data.message))
+         .catch((error) => toast.error(error.message));
+   };
    return (
       <div>
          <div className="h-screen-16 flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -28,7 +52,7 @@ const Page = () => {
                      Submit Flat Share Request
                   </h2>
                </div>
-               <form className="mt-8 space-y-6">
+               <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
                   <div className="rounded-md shadow-sm space-y-4">
                      <div>
                         <label htmlFor="username" className="sr-only">

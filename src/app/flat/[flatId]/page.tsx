@@ -50,7 +50,7 @@ const Page = () => {
                   />
                )}
                <Link
-                  href={`/share?flatId=${flatId}`}
+                  href="/request-flat"
                   className="mt-5 inline-block bg-blue-500 text-white px-4 py-2 rounded"
                >
                   Share Request

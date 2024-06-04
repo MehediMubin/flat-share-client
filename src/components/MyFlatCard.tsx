@@ -1,7 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 interface MyFlatCardProps {
+   flatId: string;
    location: string;
    description: string;
    photoUrl: string;
@@ -10,6 +12,7 @@ interface MyFlatCardProps {
 }
 
 const MyFlatCard: React.FC<MyFlatCardProps> = ({
+   flatId,
    location,
    description,
    photoUrl,
@@ -28,9 +31,12 @@ const MyFlatCard: React.FC<MyFlatCardProps> = ({
             <span>{amenities}</span>
             <h3 className="card-title">Rent: ${rent}</h3>
             <div className="card-actions justify-end">
-               <button className="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+               <Link
+                  href={`/edit-flat?flatId=${flatId}`}
+                  className="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+               >
                   Edit
-               </button>
+               </Link>
                <button className="btn bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2">
                   Delete
                </button>

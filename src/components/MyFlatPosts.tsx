@@ -33,6 +33,7 @@ const MyFlatPosts = () => {
                flats.map((flat: Flat) => (
                   <MyFlatCard
                      key={flat._id}
+                     flatId={flat._id}
                      location={flat.location}
                      description={flat.description}
                      photoUrl={flat.photoUrl}

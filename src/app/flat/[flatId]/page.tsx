@@ -3,9 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 
 const Page = () => {
    const { flatId } = useParams();
+   const [isLoading, setIsLoading] = useState(true);
    const [flatData, setFlatData] = useState({
       location: "",
       description: "",
@@ -19,10 +21,20 @@ const Page = () => {
       if (flatId) {
          fetch(`http://localhost:5000/api/flats/${flatId}`)
             .then((response) => response.json())
-            .then((data) => setFlatData(data.data))
-            .catch((error) => console.error("Error:", error));
+            .then((data) => {
+               setFlatData(data.data);
+               setIsLoading(false);
+            })
+            .catch((error) => {
+               console.error("Error:", error);
+               setIsLoading(false);
+            });
       }
    }, [flatId]);
+
+   if (isLoading) {
+      return <LoadingSpinner />;
+   }
 
    return (
       <div className="p-5">

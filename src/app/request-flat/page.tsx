@@ -1,4 +1,5 @@
-import Link from "next/link";
+"use client";
+import withAuth from "@/utils/withAuth";
 import React from "react";
 
 const page = () => {
@@ -67,4 +68,4 @@ const page = () => {
    );
 };
 
-export default page;
+export default withAuth(page);

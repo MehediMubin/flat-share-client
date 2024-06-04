@@ -1,9 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { Flat } from "./FlatList";
 
 const FlatCard = (props: Flat) => {
    const {
+      _id,
       location,
       description,
       rent,
@@ -35,9 +37,12 @@ const FlatCard = (props: Flat) => {
                <span className="text-gray-700">{amenities}</span>
             </div>
             <div className="card-actions justify-end">
-               <button className="btn btn-primary bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+               <Link
+                  href={`/flat/${_id}`}
+                  className="btn btn-primary bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded"
+               >
                   Watch
-               </button>
+               </Link>
             </div>
          </div>
       </div>

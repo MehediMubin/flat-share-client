@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import FlatCard from "./FlatCard";
 
 export interface Flat {
+   _id: string;
    location: string;
    description: string;
    rent: number;
@@ -27,6 +28,7 @@ const FlatList = ({ searchState }: { searchState: any }) => {
          {flats.map((flat: Flat, index: number) => (
             <FlatCard
                key={index}
+               _id={flat._id}
                location={flat.location}
                description={flat.description}
                rent={flat.rent}

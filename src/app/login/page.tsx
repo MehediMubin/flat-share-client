@@ -1,5 +1,6 @@
 "use client";
 import Header from "@/components/Header";
+import { jwtDecode } from "jwt-decode";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -9,6 +10,13 @@ import { toast } from "sonner";
 interface FormData {
    usernameOrEmail: string;
    password: string;
+}
+
+interface jwtPayload {
+   id: string;
+   exp: number;
+   iat: number;
+   role: string;
 }
 
 const Page = () => {
@@ -43,15 +51,17 @@ const Page = () => {
             return;
          }
          const token = responseData?.data?.token;
-
          localStorage.setItem("token", token);
-         if (Array.isArray(from)) {
-            router.push(from[0]);
-         } else if (from) {
-            router.push(from);
-         } else {
-            router.push("/");
-         }
+         // decode the token and check if the user is an admin
+         const decodedToken: jwtPayload = jwtDecode(token);
+         console.log(decodedToken);
+         toast.success("Logged in successfully.");
+         if (
+            decodedToken.role === "admin" ||
+            decodedToken.role === "superAdmin"
+         ) {
+            router.push("/dashboard");
+         } else router.push("/");
       } catch (error) {
          toast.error("An error occurred. Please try again later.");
       }

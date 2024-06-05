@@ -2,7 +2,7 @@ import React from "react";
 
 const page = () => {
    return (
-      <div className="w-4/5 ml-auto h-screen">
+      <div>
          <h1>User Management Page</h1>
       </div>
    );

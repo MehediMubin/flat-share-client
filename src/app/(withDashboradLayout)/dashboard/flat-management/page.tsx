@@ -16,7 +16,7 @@ const Page = () => {
    const [flats, setFlats] = useState([]);
 
    useEffect(() => {
-      fetch(`http://localhost:5000/api/flats`)
+      fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/flats`)
          .then((response) => response.json())
          .then((data) => setFlats(data.data))
          .catch((error) => console.error("Error:", error));
@@ -24,7 +24,7 @@ const Page = () => {
 
    const handleDelete = async (flatId: string) => {
       const token = localStorage.getItem("token");
-      await fetch(`http://localhost:5000/api/flats/${flatId}`, {
+      await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/flats/${flatId}`, {
          method: "DELETE",
          headers: {
             Authorization: `${token}`,

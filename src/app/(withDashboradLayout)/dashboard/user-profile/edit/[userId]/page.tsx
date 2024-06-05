@@ -15,7 +15,7 @@ const Page = () => {
          if (!token) {
             throw new Error("Token not found");
          }
-         const url = `http://localhost:5000/api/profile/${userId}`;
+         const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/profile/${userId}`;
 
          fetch(url, {
             method: "PUT",

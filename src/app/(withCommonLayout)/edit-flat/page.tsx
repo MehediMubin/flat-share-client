@@ -41,7 +41,7 @@ const Page = () => {
          const token = localStorage.getItem("token");
 
          const response = await fetch(
-            `http://localhost:5000/api/flats/${flatId}`,
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/flats/${flatId}`,
             {
                method: "PUT",
                headers: {

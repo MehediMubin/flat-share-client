@@ -22,7 +22,7 @@ const MyFlatPosts = () => {
 
    const handleDelete = async (flatId: string) => {
       const token = localStorage.getItem("token");
-      await fetch(`http://localhost:5000/api/flats/${flatId}`, {
+      await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/flats/${flatId}`, {
          method: "DELETE",
          headers: {
             Authorization: `${token}`,

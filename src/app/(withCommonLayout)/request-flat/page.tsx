@@ -31,14 +31,17 @@ const Page = () => {
          email: profileData.email,
       };
       const token = localStorage.getItem("token");
-      fetch(`http://localhost:5000/api/booking-applications?flatId=${flatId}`, {
-         method: "POST",
-         headers: {
-            "Content-Type": "application/json",
-            Authorization: `${token}`,
-         },
-         body: JSON.stringify(bodyData),
-      })
+      fetch(
+         `${process.env.NEXT_PUBLIC_BACKEND_URL}/booking-applications?flatId=${flatId}`,
+         {
+            method: "POST",
+            headers: {
+               "Content-Type": "application/json",
+               Authorization: `${token}`,
+            },
+            body: JSON.stringify(bodyData),
+         }
+      )
          .then((response) => response.json())
          .then((data) => toast.success(data.message))
          .catch((error) => toast.error(error.message));

@@ -19,7 +19,7 @@ const Page = () => {
 
    useEffect(() => {
       if (flatId) {
-         fetch(`http://localhost:5000/api/flats/${flatId}`)
+         fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/flats/${flatId}`)
             .then((response) => response.json())
             .then((data) => {
                setFlatData(data.data);

@@ -17,7 +17,7 @@ const FlatList = ({ searchState }: { searchState: any }) => {
 
    useEffect(() => {
       const params = new URLSearchParams(searchState).toString();
-      fetch(`http://localhost:5000/api/flats?${params}`)
+      fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/flats?${params}`)
          .then((response) => response.json())
          .then((data) => setFlats(data.data))
          .catch((error) => console.error("Error:", error));

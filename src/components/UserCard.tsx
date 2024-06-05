@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { HiPencilAlt } from "react-icons/hi";
 
-const UserCard = ({ username, email, role, status }: User) => {
+const UserCard = ({ _id, username, email, role, status }: User) => {
    return (
       <div className="h-screen-16 flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
          <div className="max-w-md w-full space-y-8 shadow-lg p-6 rounded-lg bg-white">
@@ -12,7 +12,7 @@ const UserCard = ({ username, email, role, status }: User) => {
                   User Profile
                </h1>
                <div className="flex">
-                  <Link href="/dashboard/user-profile/edit">
+                  <Link href={`/dashboard/user-profile/edit/${_id}`}>
                      <HiPencilAlt className="text-2xl text-gray-500 cursor-pointer hover:text-gray-900" />
                   </Link>
                </div>

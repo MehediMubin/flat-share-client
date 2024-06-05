@@ -1,12 +1,43 @@
 "use client";
+import { useParams } from "next/navigation";
 import React, { useState } from "react";
+import { toast } from "sonner";
 
 const Page = () => {
    const [statusFilter, setStatusFilter] = useState("");
    const [roleFilter, setRoleFilter] = useState("");
 
+   const { userId } = useParams();
+
    const handleFilter = () => {
-      // Implement your filtering logic here
+      try {
+         const token = localStorage.getItem("token");
+         if (!token) {
+            throw new Error("Token not found");
+         }
+         const url = `http://localhost:5000/api/profile/${userId}`;
+
+         fetch(url, {
+            method: "PUT",
+            headers: {
+               "Content-Type": "application/json",
+               Authorization: `${token}`,
+            },
+            body: JSON.stringify({
+               status: statusFilter,
+               role: roleFilter,
+            }),
+         })
+            .then((response) => response.json())
+            .then((data) => {
+               toast.success(data.message);
+            })
+            .catch((error) => {
+               toast.error(error.message);
+            });
+      } catch (error) {
+         console.error(error);
+      }
    };
 
    return (
@@ -15,7 +46,7 @@ const Page = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-light-blue-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
             <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
                <h1 className="text-2xl font-extrabold text-gray-900">
-                  User Management Page
+                  Update User Profile
                </h1>
                <div className="mt-8">
                   <div className="mt-1">

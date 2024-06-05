@@ -1,13 +1,14 @@
-import Header from "@/components/Header";
+"use client";
+import { AuthContext } from "@/contexts/AuthContext";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { useState } from "react";
 import { Toaster } from "sonner";
 import "./globals.css";
-import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
    title: "FlatHub - Find the perfect flatmate for your home",
    description: "Your go-to place for finding the perfect flatmate",
 };
@@ -17,13 +18,16 @@ export default function RootLayout({
 }: Readonly<{
    children: React.ReactNode;
 }>) {
+   const [isAuthenticated, setIsAuthenticated] = useState(false);
    return (
       <html lang="en">
          <body className={inter.className}>
-            <Toaster position="bottom-right" />
-            <Header />
-            {children}
-            <Footer />
+            <AuthContext.Provider
+               value={{ isAuthenticated, setIsAuthenticated }}
+            >
+               <Toaster position="bottom-right" />
+               {children}
+            </AuthContext.Provider>
          </body>
       </html>
    );

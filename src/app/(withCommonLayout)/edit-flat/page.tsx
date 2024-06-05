@@ -23,19 +23,17 @@ const Page = () => {
       data.rent = Number(data.rent);
       data.numberOfBedrooms = Number(data.numberOfBedrooms);
 
-      const bodyData: { [key: string]: string | number } = {};
+      const newData = data;
+      let bodyData = {};
 
-      Object.keys(data).forEach((key) => {
+      Object.keys(newData).forEach((key) => {
          if (
-            data[key as keyof FormData] !== "" &&
-            data[key as keyof FormData] !== 0
+            newData[key as keyof FormData] !== "" &&
+            newData[key as keyof FormData] !== 0
          ) {
-            bodyData[key as keyof FormData] = data[key as keyof FormData] as
-               | string
-               | number;
+            bodyData = { ...bodyData, [key]: newData[key as keyof FormData] };
          }
       });
-      console.log(bodyData);
 
       try {
          const token = localStorage.getItem("token");

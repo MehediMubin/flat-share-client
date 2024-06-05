@@ -8,7 +8,7 @@ const MyFlatPosts = () => {
 
    useEffect(() => {
       const token = localStorage.getItem("token");
-      fetch("http://localhost:5000/api/flats/user", {
+      fetch(`${process.env.BACKEND_URL}/flats/user`, {
          headers: {
             Authorization: `${token}`,
          },

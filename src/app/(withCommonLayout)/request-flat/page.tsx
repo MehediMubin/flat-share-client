@@ -14,7 +14,7 @@ const Page = () => {
 
    useEffect(() => {
       const token = localStorage.getItem("token");
-      fetch("http://localhost:5000/api/profile", {
+      fetch(`${process.env.BACKEND_URL}/profile`, {
          headers: {
             Authorization: `${token}`,
          },

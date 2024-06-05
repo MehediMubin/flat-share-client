@@ -27,7 +27,7 @@ const MyProfile = () => {
          const token = localStorage.getItem("token");
 
          if (token) {
-            const response = await fetch("http://localhost:5000/api/profile", {
+            const response = await fetch(`${process.env.BACKEND_URL}/profile`, {
                headers: {
                   Authorization: token,
                },

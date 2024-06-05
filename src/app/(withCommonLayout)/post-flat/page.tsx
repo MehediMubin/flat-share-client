@@ -22,7 +22,7 @@ const Page = () => {
       try {
          const token = localStorage.getItem("token");
 
-         const response = await fetch("http://localhost:5000/api/flats", {
+         const response = await fetch(`${process.env.BACKEND_URL}/flats`, {
             method: "POST",
             headers: {
                "Content-Type": "application/json",

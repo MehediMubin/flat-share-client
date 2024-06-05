@@ -25,7 +25,7 @@ const Page = () => {
 
    const onSubmit: SubmitHandler<FormData> = async (data, e) => {
       try {
-         const response = await fetch("http://localhost:5000/api/register", {
+         const response = await fetch(`${process.env.BACKEND_URL}/register`, {
             method: "POST",
             headers: {
                "Content-Type": "application/json",

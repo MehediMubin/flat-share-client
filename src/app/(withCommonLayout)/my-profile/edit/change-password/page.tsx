@@ -30,7 +30,7 @@ const Page = () => {
             newPassword: data.newPassword,
          };
 
-         const response = await fetch("http://localhost:5000/api/profile", {
+         const response = await fetch(`${process.env.BACKEND_URL}/profile`, {
             method: "PUT",
             headers: {
                Authorization: token,

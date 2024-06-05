@@ -37,7 +37,7 @@ const Page = () => {
       };
 
       try {
-         const response = await fetch("http://localhost:5000/api/login", {
+         const response = await fetch(`${process.env.BACKEND_URL}/login`, {
             method: "POST",
             headers: {
                "Content-Type": "application/json",

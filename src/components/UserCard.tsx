@@ -12,7 +12,7 @@ const UserCard = ({ username, email, role, status }: User) => {
                   User Profile
                </h1>
                <div className="flex">
-                  <Link href="/user-profile/edit">
+                  <Link href="/dashboard/user-profile/edit">
                      <HiPencilAlt className="text-2xl text-gray-500 cursor-pointer hover:text-gray-900" />
                   </Link>
                </div>

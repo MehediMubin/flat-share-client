@@ -25,13 +25,16 @@ const Page = () => {
 
    const onSubmit: SubmitHandler<FormData> = async (data, e) => {
       try {
-         const response = await fetch(`${process.env.BACKEND_URL}/register`, {
-            method: "POST",
-            headers: {
-               "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-         });
+         const response = await fetch(
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/register`,
+            {
+               method: "POST",
+               headers: {
+                  "Content-Type": "application/json",
+               },
+               body: JSON.stringify(data),
+            }
+         );
 
          const responseData = await response.json();
 

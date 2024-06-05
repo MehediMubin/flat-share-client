@@ -8,7 +8,7 @@ const MyFlatPosts = () => {
 
    useEffect(() => {
       const token = localStorage.getItem("token");
-      fetch(`${process.env.BACKEND_URL}/flats/user`, {
+      fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/flats/user`, {
          headers: {
             Authorization: `${token}`,
          },

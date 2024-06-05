@@ -15,7 +15,7 @@ const MyFlatRequests = () => {
          try {
             const token = localStorage.getItem("token");
             const response = await fetch(
-               `${process.env.BACKEND_URL}/booking-requests/user`,
+               `${process.env.NEXT_PUBLIC_BACKEND_URL}/booking-requests/user`,
                {
                   headers: {
                      Authorization: `${token}`,

@@ -22,14 +22,17 @@ const Page = () => {
       try {
          const token = localStorage.getItem("token");
 
-         const response = await fetch(`${process.env.BACKEND_URL}/flats`, {
-            method: "POST",
-            headers: {
-               "Content-Type": "application/json",
-               Authorization: `${token}`,
-            },
-            body: JSON.stringify(data),
-         });
+         const response = await fetch(
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/flats`,
+            {
+               method: "POST",
+               headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `${token}`,
+               },
+               body: JSON.stringify(data),
+            }
+         );
 
          if (response.ok) {
             toast.success("Flat listed successfully");

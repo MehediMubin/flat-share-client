@@ -26,14 +26,17 @@ const Page = () => {
             return;
          }
 
-         const response = await fetch(`${process.env.BACKEND_URL}/profile`, {
-            method: "PUT",
-            headers: {
-               Authorization: token,
-               "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-         });
+         const response = await fetch(
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/profile`,
+            {
+               method: "PUT",
+               headers: {
+                  Authorization: token,
+                  "Content-Type": "application/json",
+               },
+               body: JSON.stringify(data),
+            }
+         );
 
          const responseData = await response.json();
          if (!responseData.success) {

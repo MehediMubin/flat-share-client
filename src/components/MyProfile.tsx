@@ -27,11 +27,14 @@ const MyProfile = () => {
          const token = localStorage.getItem("token");
 
          if (token) {
-            const response = await fetch(`${process.env.BACKEND_URL}/profile`, {
-               headers: {
-                  Authorization: token,
-               },
-            });
+            const response = await fetch(
+               `${process.env.NEXT_PUBLIC_BACKEND_URL}/profile`,
+               {
+                  headers: {
+                     Authorization: token,
+                  },
+               }
+            );
 
             if (response.ok) {
                const data = await response.json();

@@ -16,7 +16,7 @@ const Page = () => {
    useEffect(() => {
       const token = localStorage.getItem("token");
 
-      fetch(`${process.env.BACKEND_URL}/profile/all`, {
+      fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/profile/all`, {
          headers: {
             Authorization: `${token}`,
          },

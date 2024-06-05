@@ -12,7 +12,7 @@ interface FormData {
    password: string;
 }
 
-interface jwtPayload {
+export interface jwtPayload {
    id: string;
    exp: number;
    iat: number;

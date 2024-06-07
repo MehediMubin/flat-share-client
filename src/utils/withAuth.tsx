@@ -9,13 +9,13 @@ import React, {
 const withAuth = (WrappedComponent: ComponentType<PropsWithChildren<{}>>) => {
    const WithAuthComponent = (props: PropsWithChildren<{}>) => {
       const Router = useRouter();
-      const token = localStorage.getItem("token");
-
       useLayoutEffect(() => {
+         const token = localStorage.getItem("token");
+
          if (!token) {
             Router.replace("/login");
          }
-      }, [Router, token]);
+      }, [Router]);
 
       return <WrappedComponent {...props} />;
    };

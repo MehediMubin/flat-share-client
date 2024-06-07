@@ -1,4 +1,4 @@
-import { User } from "@/app/(withDashboradLayout)/dashboard/user-management/page";
+import { User } from "@/components/UserManagement";
 import Link from "next/link";
 import React from "react";
 import { HiPencilAlt } from "react-icons/hi";

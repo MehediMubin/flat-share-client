@@ -71,6 +71,9 @@ const DashboardHeader = () => {
                      </Link>
                   </li>
                   <li>
+                     <Link href="/my-profile">My Profile</Link>
+                  </li>
+                  <li>
                      {isAuthenticated ? (
                         <button onClick={handleLogout}>Logout</button>
                      ) : (
@@ -95,6 +98,9 @@ const DashboardHeader = () => {
                      <Link href="/dashboard/user-management">
                         User Management
                      </Link>
+                  </li>
+                  <li>
+                     <Link href="/my-profile">My Profile</Link>
                   </li>
                   <li>
                      {isAuthenticated ? (

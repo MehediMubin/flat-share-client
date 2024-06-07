@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Flat Sharing Application
 
-## Getting Started
+[Live URL](https://flat-share-client-kohl.vercel.app/)
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+-  User Registration and Login: Users can create an account and log in to the application. This is handled using JWT for authentication.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+-  Flat Booking: Users can send a request to book a flat. The application checks if the user has already booked the flat before creating the booking.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+-  Update Booking Status: Users can update the status of their booking.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+-  User Profile: Users can view their profile, which includes personal information.
 
-## Learn More
+-  Update Profile: Users can update their profile information, such as their name, email address, and password.
 
-To learn more about Next.js, take a look at the following resources:
+## Technology Used
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-  Programming Language: TypeScript
+-  Web Framework: NextJS
+-  Authentication: JWT (JSON Web Tokens)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Setup
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Clone the repository: git clone https://github.com/MehediMubin/flat-share-client.git
+2. Install the dependencies: npm install
+3. Copy the .env.example file to a new file named .env and fill in your environment variables
+4. Start the server: npm run dev

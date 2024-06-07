@@ -71,7 +71,7 @@ const DashboardHeader = () => {
                      </Link>
                   </li>
                   <li>
-                     <Link href="/my-profile">My Profile</Link>
+                     <Link href="/dashboard/my-profile">My Profile</Link>
                   </li>
                   <li>
                      {isAuthenticated ? (
@@ -100,7 +100,7 @@ const DashboardHeader = () => {
                      </Link>
                   </li>
                   <li>
-                     <Link href="/my-profile">My Profile</Link>
+                     <Link href="/dashboard/my-profile">My Profile</Link>
                   </li>
                   <li>
                      {isAuthenticated ? (

@@ -62,7 +62,7 @@ const MyProfile = () => {
                   My Profile
                </h1>
                <div className="flex">
-                  <Link href="/my-profile/edit">
+                  <Link href="/dashboard/my-profile/edit">
                      <HiPencilAlt className="text-2xl text-gray-500 cursor-pointer hover:text-gray-900" />
                   </Link>
                   <FiLogOut

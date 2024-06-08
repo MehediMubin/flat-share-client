@@ -1,11 +1,19 @@
 "use client";
 import { AuthContext } from "@/contexts/AuthContext";
+import { jwtDecode } from "jwt-decode";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useContext, useEffect, useState } from "react";
 import { FiLogOut } from "react-icons/fi";
 import { HiPencilAlt } from "react-icons/hi";
 import LoadingSpinner from "./LoadingSpinner";
+
+type DecodedToken = {
+   id: string;
+   role: string;
+   iat: number;
+   exp: number;
+};
 
 const MyProfile = () => {
    const [username, setUsername] = useState("");
@@ -15,6 +23,12 @@ const MyProfile = () => {
    const router = useRouter();
    const { setIsAuthenticated } = useContext(AuthContext);
    const [loading, setLoading] = useState(true);
+   const [decodedToken, setDecodedToken] = useState<DecodedToken>({
+      id: "",
+      role: "user",
+      iat: 0,
+      exp: 0,
+   });
 
    const handleLogout = () => {
       localStorage.removeItem("token");
@@ -25,7 +39,6 @@ const MyProfile = () => {
    useEffect(() => {
       const fetchProfile = async () => {
          const token = localStorage.getItem("token");
-
          if (token) {
             const response = await fetch(
                `${process.env.NEXT_PUBLIC_BACKEND_URL}/profile`,
@@ -43,6 +56,7 @@ const MyProfile = () => {
                setStatus(data.data.status);
                setRole(data.data.role);
             }
+            setDecodedToken(jwtDecode(token));
          }
          setLoading(false);
       };
@@ -54,6 +68,8 @@ const MyProfile = () => {
       return <LoadingSpinner />;
    }
 
+   console.log("decodedToekn:", decodedToken);
+
    return (
       <div className="h-screen-16 flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
          <div className="max-w-md w-full space-y-8 shadow-lg p-6 rounded-lg bg-white">
@@ -62,7 +78,13 @@ const MyProfile = () => {
                   My Profile
                </h1>
                <div className="flex">
-                  <Link href="/dashboard/my-profile/edit">
+                  <Link
+                     href={
+                        decodedToken.role === "user"
+                           ? "/my-profile/edit"
+                           : "/dashboard/my-profile/edit"
+                     }
+                  >
                      <HiPencilAlt className="text-2xl text-gray-500 cursor-pointer hover:text-gray-900" />
                   </Link>
                   <FiLogOut

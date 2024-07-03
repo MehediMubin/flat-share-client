@@ -22,8 +22,8 @@
 
 ## Setup
 
-1. Clone the repository: `it clone https://github.com/MehediMubin/flat-share-client.git`
-2. 2. Navigate into the project directory: `cd your-repo`
+1. Clone the repository: `git clone https://github.com/MehediMubin/flat-share-client.git`
+2. Navigate into the project directory: `cd your-repo`
 3. Install the dependencies: `npm install`
 4. Start the application: `npm run dev`
 5. Open your browser and navigate to `http://localhost:5173`
